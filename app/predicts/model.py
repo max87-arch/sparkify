@@ -1,7 +1,7 @@
 from pypmml import Model
 
 
-def get_model(path_model="../models/bayes.pmml"):
+def get_model(path_model="../models/lr.pmml"):
     """
     The function returns the model
     :param path_model: path to model

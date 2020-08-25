@@ -23,7 +23,7 @@ def index():
 def detect_churn():
     # save user input in query
     data = json.loads(request.form.get('json', ''))
-    query = [list(x.values()) for x in data]
+    query = [list(map(int, x.values())) for x in data]
 
     classification_results = predict_churn(query)
     churn_user = False
