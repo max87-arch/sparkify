@@ -27,6 +27,7 @@
         .tabulator-col-title{
             text-align: center;
         }
+
     </style>
 </head>
 
@@ -69,14 +70,17 @@
 
 <div class="btn-group" role="group" aria-label="Table commands">
     <button id="addrow" type="button" class="btn btn-secondary"><span class="fa fa-plus"></span> Add rows</button>
-    <button id="removerow" type="button" class="btn btn-secondary"><span class="fa fa-minus"></span> Remove rows</button>
+    <button id="removerow" type="button" class="btn btn-secondary"><span class="fa fa-minus"></span> Remove rows
+    </button>
 </div>
 <div id="table-log"></div>
 </div>
 <div class="container">
 
     <div class="d-flex justify-content-center">
-        <button id="btn-detect" type="button" class="btn-primary btn-lg"><span class="fa fa-search-dollar"></span>  Detect</button>
+        <button id="btn-detect" type="button" class="btn-primary btn-lg"><span class="fa fa-search-dollar"></span>
+            Detect
+        </button>
     </div>
     <div id="alert-churn" style="margin-top: 10px;"></div>
 
@@ -154,16 +158,17 @@ columns: [
 {title:"Chrome", field:"field29",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
 {title:"Chromium", field:"field30",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
 {title:"Firefox", field:"field31",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
-{title:"IE", field:"field32",editor:"input", width: 100, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
-{title:"Mobile Safari", field:"field33",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
-{title:"Safari", field:"field34",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
+{title:"Google", field:"field32",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
+{title:"IE", field:"field33",editor:"input", width: 100, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
+{title:"Mobile Safari", field:"field34",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
+{title:"Safari", field:"field35",editor:"input", width: 150, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
 ]},
 {
   title: "Auth",
   hozAlign:"center",
 columns: [
-{title:"Cancelled", field:"field35",editor:"input", width: 200, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
-{title:"Logged In", field:"field36",editor:"input", width: 200, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
+{title:"Cancelled", field:"field36",editor:"input", width: 200, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
+{title:"Logged In", field:"field37",editor:"input", width: 200, hozAlign:"center",   validator:["min:0", "max:100", "integer"]},
 ]}
 ]
 });
@@ -194,6 +199,7 @@ $('#btn-detect').click(function(){
     });
 });
 });
+
 
     </script>
 
