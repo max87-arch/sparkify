@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.3">
+	<Header>
+		<Application name="JPMML-SparkML" version="1.5.8"/>
+		<Timestamp>2020-08-25T18:31:14Z</Timestamp>
+	</Header>
+	<DataDictionary>
+		<DataField name="n_days" optype="continuous" dataType="integer"/>
+		<DataField name="About" optype="continuous" dataType="integer"/>
+		<DataField name="Add Friend" optype="continuous" dataType="integer"/>
+		<DataField name="Add to Playlist" optype="continuous" dataType="integer"/>
+		<DataField name="Cancel" optype="continuous" dataType="integer"/>
+		<DataField name="Downgrade" optype="continuous" dataType="integer"/>
+		<DataField name="Error" optype="continuous" dataType="integer"/>
+		<DataField name="Help" optype="continuous" dataType="integer"/>
+		<DataField name="Home" optype="continuous" dataType="integer"/>
+		<DataField name="Logout" optype="continuous" dataType="integer"/>
+		<DataField name="NextSong" optype="continuous" dataType="integer"/>
+		<DataField name="Roll Advert" optype="continuous" dataType="integer"/>
+		<DataField name="Save Settings" optype="continuous" dataType="integer"/>
+		<DataField name="Settings" optype="continuous" dataType="integer"/>
+		<DataField name="Submit Downgrade" optype="continuous" dataType="integer"/>
+		<DataField name="Submit Upgrade" optype="continuous" dataType="integer"/>
+		<DataField name="Thumbs Down" optype="continuous" dataType="integer"/>
+		<DataField name="Thumbs Up" optype="continuous" dataType="integer"/>
+		<DataField name="Upgrade" optype="continuous" dataType="integer"/>
+		<DataField name="free" optype="continuous" dataType="integer"/>
+		<DataField name="paid" optype="continuous" dataType="integer"/>
+		<DataField name="GET" optype="continuous" dataType="integer"/>
+		<DataField name="PUT" optype="continuous" dataType="integer"/>
+		<DataField name="200" optype="continuous" dataType="integer"/>
+		<DataField name="307" optype="continuous" dataType="integer"/>
+		<DataField name="404" optype="continuous" dataType="integer"/>
+		<DataField name="F" optype="continuous" dataType="integer"/>
+		<DataField name="M" optype="continuous" dataType="integer"/>
+		<DataField name="Chrome" optype="continuous" dataType="integer"/>
+		<DataField name="Chromium" optype="continuous" dataType="integer"/>
+		<DataField name="Firefox" optype="continuous" dataType="integer"/>
+		<DataField name="Google" optype="continuous" dataType="integer"/>
+		<DataField name="IE" optype="continuous" dataType="integer"/>
+		<DataField name="Mobile Safari" optype="continuous" dataType="integer"/>
+		<DataField name="Safari" optype="continuous" dataType="integer"/>
+		<DataField name="Cancelled" optype="continuous" dataType="integer"/>
+		<DataField name="Logged In" optype="continuous" dataType="integer"/>
+		<DataField name="label" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+		</DataField>
+	</DataDictionary>
+	<TransformationDictionary/>
+	<RegressionModel functionName="classification" normalizationMethod="logit">
+		<MiningSchema>
+			<MiningField name="label" usageType="target"/>
+			<MiningField name="n_days"/>
+			<MiningField name="About"/>
+			<MiningField name="Add Friend"/>
+			<MiningField name="Add to Playlist"/>
+			<MiningField name="Cancel"/>
+			<MiningField name="Downgrade"/>
+			<MiningField name="Error"/>
+			<MiningField name="Help"/>
+			<MiningField name="Home"/>
+			<MiningField name="Logout"/>
+			<MiningField name="NextSong"/>
+			<MiningField name="Roll Advert"/>
+			<MiningField name="Save Settings"/>
+			<MiningField name="Settings"/>
+			<MiningField name="Submit Downgrade"/>
+			<MiningField name="Submit Upgrade"/>
+			<MiningField name="Thumbs Down"/>
+			<MiningField name="Thumbs Up"/>
+			<MiningField name="Upgrade"/>
+			<MiningField name="free"/>
+			<MiningField name="paid"/>
+			<MiningField name="GET"/>
+			<MiningField name="PUT"/>
+			<MiningField name="200"/>
+			<MiningField name="307"/>
+			<MiningField name="404"/>
+			<MiningField name="F"/>
+			<MiningField name="M"/>
+			<MiningField name="Chrome"/>
+			<MiningField name="Chromium"/>
+			<MiningField name="Firefox"/>
+			<MiningField name="Google"/>
+			<MiningField name="IE"/>
+			<MiningField name="Mobile Safari"/>
+			<MiningField name="Safari"/>
+			<MiningField name="Cancelled"/>
+			<MiningField name="Logged In"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="pmml(prediction)" optype="categorical" dataType="integer" isFinalResult="false"/>
+			<OutputField name="prediction" optype="continuous" dataType="double" feature="transformedValue">
+				<MapValues outputColumn="data:output" dataType="double">
+					<FieldColumnPair field="pmml(prediction)" column="data:input"/>
+					<InlineTable>
+						<row>
+							<data:input>0</data:input>
+							<data:output>0</data:output>
+						</row>
+						<row>
+							<data:input>1</data:input>
+							<data:output>1</data:output>
+						</row>
+					</InlineTable>
+				</MapValues>
+			</OutputField>
+			<OutputField name="probability(0)" optype="continuous" dataType="double" feature="probability" value="0"/>
+			<OutputField name="probability(1)" optype="continuous" dataType="double" feature="probability" value="1"/>
+		</Output>
+		<RegressionTable intercept="-1.097351538315927" targetCategory="1">
+			<NumericPredictor name="n_days" coefficient="-0.010995850519304951"/>
+			<NumericPredictor name="About" coefficient="-0.003434636900713876"/>
+			<NumericPredictor name="Add Friend" coefficient="0.010018839339637181"/>
+			<NumericPredictor name="Add to Playlist" coefficient="0.00912458150974673"/>
+			<NumericPredictor name="Cancel" coefficient="8.333469840742977"/>
+			<NumericPredictor name="Downgrade" coefficient="0.037789676287931256"/>
+			<NumericPredictor name="Error" coefficient="-0.010733193648987123"/>
+			<NumericPredictor name="Help" coefficient="-0.01123318447432042"/>
+			<NumericPredictor name="Home" coefficient="-0.0035835742154871207"/>
+			<NumericPredictor name="Logout" coefficient="0.02334163538186444"/>
+			<NumericPredictor name="NextSong" coefficient="1.5093735516296224E-4"/>
+			<NumericPredictor name="Roll Advert" coefficient="0.09791199948048881"/>
+			<NumericPredictor name="Save Settings" coefficient="0.007884398755061651"/>
+			<NumericPredictor name="Settings" coefficient="-0.024856937146882505"/>
+			<NumericPredictor name="Submit Downgrade" coefficient="-0.01963538755092343"/>
+			<NumericPredictor name="Submit Upgrade" coefficient="0.19876582961806444"/>
+			<NumericPredictor name="Thumbs Down" coefficient="0.10037883266955722"/>
+			<NumericPredictor name="Thumbs Up" coefficient="-0.04824672618517319"/>
+			<NumericPredictor name="Upgrade" coefficient="-0.06241949156020771"/>
+			<NumericPredictor name="free" coefficient="-0.005606034423199614"/>
+			<NumericPredictor name="paid" coefficient="9.703366594166787E-4"/>
+			<NumericPredictor name="GET" coefficient="0.023920323416261824"/>
+			<NumericPredictor name="PUT" coefficient="3.8996808163522774E-5"/>
+			<NumericPredictor name="200" coefficient="2.7611541452220227E-4"/>
+			<NumericPredictor name="307" coefficient="-0.010790385296545524"/>
+			<NumericPredictor name="404" coefficient="-0.010733193648987123"/>
+			<NumericPredictor name="F" coefficient="-1.0560931353188791E-4"/>
+			<NumericPredictor name="M" coefficient="2.920592107749699E-4"/>
+			<NumericPredictor name="Chrome" coefficient="3.191911955933469E-4"/>
+			<NumericPredictor name="Chromium" coefficient="0.0013454494346403858"/>
+			<NumericPredictor name="Firefox" coefficient="-4.914282727382076E-4"/>
+			<NumericPredictor name="Google" coefficient="3.8135418607152487E-4"/>
+			<NumericPredictor name="IE" coefficient="-2.0884402307760126E-5"/>
+			<NumericPredictor name="Mobile Safari" coefficient="0.0011471660533716635"/>
+			<NumericPredictor name="Safari" coefficient="-1.2069871514534976E-4"/>
+			<NumericPredictor name="Cancelled" coefficient="8.169737822890255"/>
+			<NumericPredictor name="Logged In" coefficient="1.3375297090838673E-4"/>
+		</RegressionTable>
+		<RegressionTable intercept="0.0" targetCategory="0"/>
+	</RegressionModel>
+</PMML>

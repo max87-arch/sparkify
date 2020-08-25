@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+    flaskapp:
+        build:
+            dockerfile: Dockerfile
+            context: ./
+        image: maxarch/sparkifychurndetect
+        container_name: sparkifychurndetect
+        restart: unless-stopped
+        ports:
+            - "3001:3001"
