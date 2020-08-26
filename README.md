@@ -4,11 +4,15 @@ This project has the purpose of predicting the churn rate of Sparkify's service.
 ## Description of the project
 The purpose of this project is predicting the churn rate of Sparkify's service. The dataset contains the action logs of each user.
 In particular, it tracks each listened song, each visited page, and other related data.
+
 Between the visited pages, there is the 'Submit Cancellation' page visited by the user in order to leave the service.
 It permits us to create a new feature to define if a user is going to leave the service or not.
+
 Aggregating the user actions by day, we can observe that in the 250 days since the registration date there is the highest concentration of the users who discontinue the service.
+
 Based on this data, we create two models with finality to predict if a user will leave the service using the daily aggregated data as predictors.
 The first model uses Naive Bayes's algorithm. The second uses logistic regression.
+
 To compare the two models, we use two strategies:
 * Use standard metrics: F1 Score, Accuracy Score, and Weighted Recall score. Additionally, we use the ratio of predicted users who leave the service over the total users who discontinue the service.
 * Use custom metrics: the ultimate goal is to predict as soon as possible if the user is going to leave the service. Let us assume that the duration of one account is n days. We know the daily user actions from registration to the cancellation. It means that we can count how many times the user is predicted as "churn user" since registration to n/2 days (half-life of account). Consequently, it became relevant to compare different values to understand how many "churn users" we can detect.
@@ -16,6 +20,7 @@ To compare the two models, we use two strategies:
 Using the standard metrics, the best model is the logistic regression. In the custom metrics case, the result depends on the importance of false positives.
 If we send an email to ask the churn user opinion on the service, the false positive may be irrelevant, and the best model is the Naive Bayes.
 However, if we offer a promotion to the user, the false-positive became important, and the best model is the Logistic Regression.
+
 These considerations are to be compared with some limitations:
 * First, the arbitrary selection of aggregated data by day. Other criteria could be the session ID.
 * Second, the exclusion of users’ listened songs as predictors. This can create some difficulties, like overfitting or an excessive number of predictors.
