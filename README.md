@@ -12,6 +12,7 @@ The first model uses Naive Bayes's algorithm. The second uses logistic regressio
 To compare the two models, we use two strategies:
 * Use standard metrics: F1 Score, Accuracy Score, and Weighted Recall score. Additionally, we use the ratio of predicted users who leave the service over the total users who discontinue the service.
 * Use custom metrics: the ultimate goal is to predict as soon as possible if the user is going to leave the service. Let us assume that the duration of one account is n days. We know the daily user actions from registration to the cancellation. It means that we can count how many times the user is predicted as "churn user" since registration to n/2 days (half-life of account). Consequently, it became relevant to compare different values to understand how many "churn users" we can detect.
+
 Using the standard metrics, the best model is the logistic regression. In the custom metrics case, the result depends on the importance of false positives.
 If we send an email to ask the churn user opinion on the service, the false positive may be irrelevant, and the best model is the Naive Bayes.
 However, if we offer a promotion to the user, the false-positive became important, and the best model is the Logistic Regression.
