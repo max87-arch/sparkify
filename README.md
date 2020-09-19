@@ -47,8 +47,8 @@ Like already previously observed, we can consider only the first 250 days since 
 * We lose data on faithful customers.
 * We reduce the number of rows of faithful customers. It permits us to limit the problem of the imbalanced dataset. Because this type of customer uses the service over the 250 days, thus we have many action logs for these users.
 We add two new features in the dataset:
-1. Its is_churn attribute that defines if a user leaves the service.
-2. Its n_days attribute that counts the elapsed days since registration date. It permits us to normalize the action date. 
+1. It's is_churn attribute that defines if a user leaves the service.
+2. It's n_days attribute that counts the elapsed days since registration date. It permits us to normalize the action date. 
 In the next step, we aggregate data using a pivot table. For each row, we count how many times each value occurs for each userId and n_days. In other words, each row contains the user id, the n_days, how many times the user has visited a specific page during the day, etc.
 Some columns are not idoneous for the pivot table, and we exclude them.
 If a feature has many distinct values, we can encounter some difficulties:
@@ -186,7 +186,6 @@ These considerations can be as follows:
 We have created a model, but this only one aspect of our job. It's also essential to put into practice the built model.
 It's necessary to export the model from Apache Spark, thus we can reuse it inside another application. A possible solution is to export it in the [PMML](https://en.wikipedia.org/wiki/Predictive_Model_Markup_Language) format using the Pyspark2pmml module. 
 In this way, we can reuse the model and embed it inside a web app. To show the model at work, we created a web app where you can find some daily logs of the user activities inside a table. The data are editable so you can experiment to identify which values influence if the user will leave the service.
-
 
 ## Structure of the repository
 In this repository you can find:
