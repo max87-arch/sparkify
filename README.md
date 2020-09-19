@@ -43,21 +43,27 @@ The first point that we need to handle is the presence of NA values.
 In the dataset, 778479 rows miss some relevant features like registration, user agent, location, firstName, lastName, and gender.
 Dropping the rows with NA in the registration column, we can observe the same result in the other features.
 Like already previously observed, we can consider only the first 250 days since the registration date. This choice has some impacts:
+
 * We reduce the amount of data to analyze.
 * We lose data on faithful customers.
 * We reduce the number of rows of faithful customers. It permits us to limit the problem of the imbalanced dataset. Because this type of customer uses the service over the 250 days, thus we have many action logs for these users.
+
 We add two new features in the dataset:
 1. It's is_churn attribute that defines if a user leaves the service.
 2. It's n_days attribute that counts the elapsed days since registration date. It permits us to normalize the action date. 
 In the next step, we aggregate data using a pivot table. For each row, we count how many times each value occurs for each userId and n_days. In other words, each row contains the user id, the n_days, how many times the user has visited a specific page during the day, etc.
 Some columns are not idoneous for the pivot table, and we exclude them.
 If a feature has many distinct values, we can encounter some difficulties:
+
 1. We can have an overfitting problem. A particular value (like user id) can be mapped on a specific pattern if we have many columns.
 2. We can have a memory problem. 
+
 The columns to exclude are:
+
 * Location: in this column, we find the list of many cities. For 22503 users, the granularity is too fine. 
 * Songs: in this column, there are too many different values.
 * Artists: in this column, it similar to the songs column's problem.
+
 For the user agent column, we can adopt another solution. The column has 83 distinct values. Each browser has many versions, but it has only one family. So we can map the user agent on its family browser.
 
 ### Implementation
@@ -65,11 +71,15 @@ For the user agent column, we can adopt another solution. The column has 83 dist
 The first step to build a model is to split the dataset between the train set and test set. In our case, it's necessary to preserve the integrity of action logs. It means that we split the data by user id. Some users will be in the train set, and the other in the test set.
 A good ratio to split the dataset may be that 70% of users go in the train set, and 30% of users go in the test set.
 The full dataset is about 12GB. It's too big to fit into a single computer. To overcome this problem, we can proceed to the next step:
+
 1. We use a small dataset to experiment on the local machine
 2. We use the full dataset on a remote cluster like AWS EMR
+
 However, the systems are different, and we can encounter some problems:
+
 * The setup of the environment is different.
 * With a big dataset, we should be careful about memory allocations. It's a best practice to free the cluster from cached data frames.
+
 To maximize performance, we can create two models with different algorithms.
 The first model uses the Naive Bayes Algorithm. The second model uses a Logistic Regression.
 To obtain the best results, we must use a hyperparameters tuning.
@@ -89,6 +99,7 @@ To emphasize this aspect, we can compare two different algorithms to show as eva
 ### Model Evaluation and Validation
 
 Before going to the conclusion, we shall evaluate our models. We can begin to analyze them by using the standard metrics:
+
 * Naive Bayes: 
     * F1 Score: 0.6763166451101013
     * Accuracy Score: 0.644754635759245
@@ -96,6 +107,7 @@ Before going to the conclusion, we shall evaluate our models. We can begin to an
     * Total churn users: 4901
     * Number predicted churn users: 4553
     * Ratio: 0.9289940828402367
+    
 * Logistic Regression: 
     * F1 Score: 0.7604781055264619
     * Accuracy Score: 0.8235508605979934
@@ -103,11 +115,13 @@ Before going to the conclusion, we shall evaluate our models. We can begin to an
     * Total churn users: 4901
     * Number predicted churn user
     * Ratio: 0.9779636808814528
+    
 We observe that the logistic regression model has better results in respect to the Naive Bayes model. 
 An important aspect is that the F1 score is low. And therefore, the predictions have a considerable amount of false-positive cases.
 However, we can observe a good number of predicted users leaving the service. This observation is useful for the custom metric described above.
 
 The result of our custom metric for the Naive Bayes model is:
+
 * Counting at least one positive value at 50.0% of the lifetime of the account, it predicts the 0.34931646602734134
 * Counting at least one positive value at 70.0% of the lifetime of the account, it predicts the 0.5164252193429912
 * Counting at least one positive value at 80.0% of the lifetime of the account, it predicts the 0.6000816159967354
@@ -138,7 +152,9 @@ The result of our custom metric for the Naive Bayes model is:
 * Counting at least three positive values at 80.0% of the lifetime of the account, it predicts false positive 0.38368312148980194
 * Counting at least three positive values at 90.0% of the lifetime of the account, it predicts false positive 0.4150753768844221
 * Counting at least three positive values at 99.0% of the lifetime of the account, it predicts false positive 0.4402601241501626
+
 The result of our custom metric for the Naive Bayes model is:
+
 * Counting at least one positive value at 50.0% of the lifetime of the account, it predicts the 0.029993878800244848
 * Counting at least one positive value at 70.0% of the lifetime of the account, it predicts the 0.04998979800040808
 * Counting at least one positive value at 80.0% of the lifetime of the account, it predicts the 0.0612119975515201
@@ -169,6 +185,7 @@ The result of our custom metric for the Naive Bayes model is:
 * Counting at least three positive values at 80.0% of the lifetime of the account, it predicts false positive 0.0004729530002955956
 * Counting at least three positive values at 90.0% of the lifetime of the account, it predicts false positive 0.0004729530002955956
 * Counting at least three positive values at 99.0% of the lifetime of the account, it predicts false positive 0.0004729530002955956
+
 In this case, the result depends on the importance of false positives. If we send an email to ask the churn user’s opinion on the service, the false positive may be irrelevant. Otherwise, if we offer a promotion to the user, the false-positive became important. 
 
 ### Conclusion
@@ -177,6 +194,7 @@ In the previous sections, we have analyzed the dataset, and we have built differ
 This choice has made it possible to create a uniform dataset between users avoiding the creation of an imbalanced dataset. However, it's relevant to consider that the assumption is valid on this dataset that snapshots out data in a specific moment. It's reasonable to expect that this scenario may change in the future.
 Another aspect to consider is that our model describes how the users leave the services. To improve the service should be desirable to understand why.
 These considerations can be as follows:
+
 * Build a model that considers the whole lifetime of the account
 * Build a model using a different algorithm
 * Request of the user their motivation for account cancellation. Next, we can apply the NLP technique to understand why. 
